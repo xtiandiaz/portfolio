@@ -1,0 +1,17 @@
+@use 'sass:color';
+@use 'sass:map';
+
+$light-scheme-colors: (
+  'background': rgb(207, 240, 234),
+  'body': rgb(9, 13, 13),
+);
+$dark-scheme-colors: (
+  'background': rgb(9, 13, 13),
+  'body': rgb(207, 240, 234),
+);
+
+$project-colors: (
+  'groovy': #ff0000,
+  'binnacle': #21b7eb,
+  'berilio': #175c48,
+);
