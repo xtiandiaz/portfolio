@@ -1,16 +1,22 @@
-import { snakeCase } from 'change-case'
-import { type AspectRatio } from '../types'
+import * as Color from '../utils/color'
 
-export interface Project {
+export interface ProjectItem {
+  id: string
   name: string
   type: Project.Type
-  images: string[]
-  aspectRatio: AspectRatio
-  colors: Project.Colors
+  aspectRatio: string
+  palette: Project.Palette
+  tags: Project.Tag[]
   preview?: string
-  tags?: string[]
-  description?: string
+  options?: Partial<Project.Options>
 }
+
+export interface Project extends ProjectItem {
+  images?: Project.Image[]
+  description?: string
+  link?: string
+}
+
 export namespace Project {
   export enum Type {
     APP_DEV = 'app-dev',
@@ -20,12 +26,27 @@ export namespace Project {
     WEB_DEV = 'web-dev',
   }
 
-  export interface Colors {
-    background: string
+  export interface Options {
+    invertsColors: boolean
   }
 
-  export const key = (project: Project) => {
-    return snakeCase(project.name)
+  export interface Palette {
+    default: string
+    darker: string
+    darkest: string
+    lighter: string
+  }
+
+  export interface Image {
+    size: { w: number; h: number }
+    alt?: string
+    name?: string
+  }
+
+  export interface Tag {
+    label: string
+    backgroundColor: string
+    priority: number
   }
 
   export const typeName = (type: Type) => {
@@ -43,18 +64,18 @@ export namespace Project {
     }
   }
 
-  export const aspectRatioValue = (aspectRatio: AspectRatio): number => {
-    switch (aspectRatio) {
-      case '1:1':
-        return 1
-      case '3:4':
-        return 3 / 4
-      case '4:3':
-        return 4 / 3
-    }
-  }
-
-  export const tags = (project: Project): string[] => {
-    return [project.name, typeName(project.type)]
+  export const tags = (name: string, type: Type, color: string): Tag[] => {
+    return [
+      {
+        label: name,
+        backgroundColor: Color.setOpacity(color, 0.8),
+        priority: 1,
+      },
+      {
+        label: typeName(type),
+        backgroundColor: Color.setOpacity(color, 0.4),
+        priority: 0,
+      },
+    ]
   }
 }

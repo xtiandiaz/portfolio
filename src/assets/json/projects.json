@@ -2,82 +2,73 @@
   {
     "name": "Emerald",
     "type": "game-dev",
-    "images": [],
     "aspectRatio": "4:3",
-    "colors": {
-      "background": "#192026"
-    }
+    "color": "#192026",
+    "link": "https://github.com/xtiandiaz/emerald"
   },
   {
     "name": "Lingoji",
     "type": "app-dev",
-    "images": [],
     "aspectRatio": "1:1",
-    "colors": {
-      "background": "#4d27ca"
-    }
+    "color": "#4d27ca"
   },
   {
     "name": "Suomingo",
     "type": "app-dev",
-    "images": [],
     "aspectRatio": "3:4",
-    "colors": {
-      "background": "#1b1e2b"
-    }
+    "color": "#1b1e2b"
   },
   {
     "name": "Groovy",
     "type": "branding",
-    "images": [],
     "aspectRatio": "1:1",
-    "colors": {
-      "background": "#ff0000"
-    }
+    "color": "#ff0000"
   },
   {
     "name": "Binnacle",
     "type": "branding",
-    "images": [],
+    "images": [
+      {
+        "size": { "w": 1280, "h": 960 },
+        "alt": "Logotype"
+      },
+      {
+        "size": { "w": 1280, "h": 960 },
+        "alt": "Document cover featuring logo-symbol"
+      }
+    ],
     "aspectRatio": "1:1",
-    "colors": {
-      "background": "#00b9f1"
-    }
+    "color": "#21b7eb"
   },
   {
     "name": "Berilio",
     "type": "branding",
     "images": [],
     "aspectRatio": "4:3",
-    "colors": {
-      "background": "#FFF"
-    }
+    "color": "#1d7259"
   },
   {
     "name": "Go-spot",
     "type": "branding",
     "images": [],
     "aspectRatio": "4:3",
-    "colors": {
-      "background": "#e8f1ef"
-    }
+    "color": "#e8f1ef"
   },
   {
     "name": "Xtian D.",
     "type": "branding",
     "images": [],
     "aspectRatio": "3:4",
-    "colors": {
-      "background": "#47b4e6"
-    }
+    "color": "#47b4e6"
   },
   {
     "name": "Breeze",
     "type": "branding",
     "images": [],
     "aspectRatio": "4:3",
-    "colors": {
-      "background": "#FFF"
+    "color": "#cbd95f",
+    "options": {
+      "invertsColors": true
     }
   }
 ]
