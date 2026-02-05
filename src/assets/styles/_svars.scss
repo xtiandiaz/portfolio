@@ -3,15 +3,21 @@
 
 $light-scheme-colors: (
   'background': rgb(207, 240, 234),
-  'body': rgb(9, 13, 13),
+  'body': #303436,
 );
 $dark-scheme-colors: (
   'background': rgb(9, 13, 13),
-  'body': rgb(207, 240, 234),
+  'body': #f2f2f3,
+);
+
+$main-colors: (
+  'background': rgb(9, 13, 13),
+  'body': #f2f2f3,
 );
 
 $project-colors: (
   'groovy': #ff0000,
   'binnacle': #21b7eb,
-  'berilio': #175c48,
+  'berilio': #1d7259,
+  'breeze': #cbd95f,
 );

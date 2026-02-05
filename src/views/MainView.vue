@@ -1,30 +1,48 @@
 <script setup lang="ts">
-import { Project } from '@/models/Project';
-import projectsData from '@/assets/json/projects.json'
 import { ProjectItem } from '@/components';
+import { ProjectRepo } from '@/services/ProjectRepo';
 
-const projects = projectsData as Project[]
+const repo = ProjectRepo.instance
 </script>
 
 <template>
-  <header>xd</header>
   <main>
-    <ProjectItem v-for="(project, index) of projects" :key="index" :project="project" />
+    <article>
+      <div class="project-items">
+        <ProjectItem v-for="(project, index) of repo.items" :key="index" :project="project"
+          @click="$router.push(`/project/${project.id}`)" />
+      </div>
+    </article>
   </main>
+  <footer>xd</footer>
 </template>
 
 <style scoped lang="scss">
-main {
+@use '@/assets/styles/mixins';
+
+.project-items {
   $gap: 1rem;
 
-  columns: 3;
   column-gap: $gap;
+  columns: 4;
   font-size: 0;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 1280px;
 
   .project-item {
     margin-bottom: $gap;
+  }
+
+  @media (max-width: 1024px) {
+    columns: 3;
+  }
+
+  @media (max-width: 800px) {
+    columns: 2;
+  }
+
+  @media (max-width: 640px) {
+    columns: 1;
   }
 }
 </style>

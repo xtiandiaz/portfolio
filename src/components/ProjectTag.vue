@@ -1,23 +1,21 @@
 <script setup lang="ts">
-const { projectKey, isPrimary } = defineProps<{
-  projectKey: string
-  isPrimary: boolean
-}>()
+import type { Project } from '@/models/Project';
 
-const colorVar = `--color-${projectKey}-${isPrimary ? 'darker' : 'lighter'}`
+defineProps<{
+  tag: Project.Tag
+}>()
 </script>
 
 <template>
-  <span class="tag" :class="{ 'primary': isPrimary }"
-    :style="{ 'background-color': `hsl(from var(${colorVar}) h s l / 50%)` }">
-    <slot></slot>
+  <span class="tag" :class="{ 'primary': tag.priority > 0 }" :style="{ 'background-color': tag.backgroundColor }">
+    {{ tag.label }}
   </span>
 </template>
 
 <style scoped lang="scss">
 .tag {
   border-radius: 0.5rem;
-  color: var(--color-body);
+  color: white;
   display: inline-block;
   font-family: 'Inter Medium', sans-serif;
   font-size: 0.75rem;

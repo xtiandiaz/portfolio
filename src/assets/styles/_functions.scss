@@ -1,2 +1,13 @@
 @use 'sass:map';
 @use './svars';
+
+@function getProjectVar($key, $type, $option: none) {
+  $varStr: '';
+  @if $type == 'color' {
+    @return 'var(--color-#{key}';
+  }
+  @if $option {
+    $varStr: $varStr + '-#{$option}';
+  }
+  @return $varStr + ')';
+}

@@ -1,31 +1,25 @@
 <script setup lang="ts">
-import { Project } from '@/models/Project';
-import { ProjectTag } from './'
+import { type ProjectItem } from '@/models/Project';
+import { ProjectTags } from './';
 
 const { project } = defineProps<{
-  project: Project
+  project: ProjectItem
 }>()
-
-const projectKey = Project.key(project)
-
 </script>
 
 <template>
-  <article class="project-item" :style="{
-    'aspect-ratio': Project.aspectRatioValue(project.aspectRatio),
-    'background-color': project.colors.background
+  <section class="project-item" :style="{
+    'aspect-ratio': project.aspectRatio,
+    'background-color': project.palette.default
   }">
-    <img :alt="`${project.name} preview`" :src="`img/${projectKey}/preview.png`" />
-    <div class="tags">
-      <ProjectTag v-for="(tag, index) of Project.tags(project)" :key="index" :project-key="projectKey"
-        :is-primary="index == 0">
-        {{ tag }}
-      </ProjectTag>
-    </div>
-  </article>
+    <img :alt="`${project.name} preview`" :src="`/img/${project.id}/preview.png`" />
+    <ProjectTags :tags="project.tags"></ProjectTags>
+  </section>
 </template>
 
 <style scoped lang="scss">
+@use '@/assets/styles/mixins';
+
 .project-item {
   border-radius: 1rem;
   box-sizing: border-box;
@@ -43,11 +37,8 @@ const projectKey = Project.key(project)
 
   .tags {
     $margin: 0.625rem;
-    bottom: $margin;
-    left: $margin;
-    position: absolute;
-    display: flex;
-    gap: 0.125rem;
+
+    @include mixins.position(absolute, none, none, $margin, $margin);
   }
 }
 </style>

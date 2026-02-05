@@ -1,7 +1,6 @@
-@use './functions' as fun;
-@use './mixins' as mix;
+@use './mixins';
 
-@include mix.color-cvars;
+@include mixins.color-cvars;
 
 @font-face {
   font-family: 'Inter Medium';
@@ -16,6 +15,11 @@
   src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
 }
 
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
 html,
 body {
   background-color: var(--color-background);
@@ -23,4 +27,20 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 0;
+  position: relative;
+}
+
+main {
+  @include mixins.position(fixed, 0, 0, 0, 0);
+}
+
+article {
+  @include mixins.position(absolute, 0, 0, 0, 0);
+  overflow-y: scroll;
+  padding: 2rem;
+  z-index: 10;
+
+  @media (max-width: 640px) {
+    padding: 1rem;
+  }
 }
