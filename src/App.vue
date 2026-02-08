@@ -11,6 +11,8 @@
     </RouterView>
 
   </RouterView>
+
+  <div id="spotlight"></div>
 </template>
 
 <style lang="scss" scoped></style>

@@ -24,6 +24,7 @@ const { project } = defineProps<{
   border-radius: 1rem;
   box-sizing: border-box;
   display: inline-block;
+  box-shadow: 0 0 1.5rem rgba(0 0 0 / 0.5);
   margin: 0;
   overflow: hidden;
   position: relative;

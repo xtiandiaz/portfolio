@@ -1,19 +1,29 @@
 <script lang="ts" setup>
-import type { Project } from '@/models/Project';
-import { ProjectTag } from './'
+import type { Tag } from '@/models/Tag';
+import { AttributeTag } from './'
 
-defineProps<{ tags: Project.Tag[] }>()
+defineProps<{ tags: Tag[] }>()
 </script>
 
 <template>
   <div class="tags">
-    <ProjectTag v-for="(tag, index) of tags" :key="index" :tag='tag' />
+    <AttributeTag v-for="(tag, index) of tags" :key="index" :tag="tag" />
   </div>
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/styles/functions';
+
 .tags {
   display: flex;
   gap: 0.125rem;
+}
+
+.tag {
+  border: none;
+
+  &.primary {
+    color: functions.color('foreground');
+  }
 }
 </style>

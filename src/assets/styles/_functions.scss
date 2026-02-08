@@ -1,5 +1,31 @@
 @use 'sass:map';
+@use 'sass:string';
 @use './svars';
+
+@function color($key, $alpha: 1) {
+  @return rgba(from map.get(svars.$main-colors, $key) r g b / $alpha);
+}
+
+@function screen-width($key) {
+  @return #{map.get(svars.$screen-widths, $key)}px;
+}
+
+@function font($style-key) {
+  $style-key: string.to-lower-case($style-key);
+  $style: '';
+
+  @if $style-key == 'light' {
+    $style: 'Light';
+  } @else if $style-key == 'regular' {
+    $style: 'Regular';
+  } @else if $style-key == 'medium' {
+    $style: 'Medium';
+  } @else if $style-key == 'semibold' {
+    $style: 'SemiBold';
+  }
+
+  @return 'Inter #{$style}';
+}
 
 @function getProjectVar($key, $type, $option: none) {
   $varStr: '';

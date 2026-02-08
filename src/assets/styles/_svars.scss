@@ -1,29 +1,31 @@
 @use 'sass:color';
 @use 'sass:map';
 
-$light-scheme-colors: (
-  'background': rgb(207, 240, 234),
-  'body': #303436,
-);
-$dark-scheme-colors: (
-  'background': rgb(9, 13, 13),
-  'body': #f2f2f3,
-);
+// $light-scheme-colors: (
+//   'background': rgb(207, 240, 234),
+//   'body': #303436,
+// );
+// $dark-scheme-colors: (
+//   'background': rgb(9, 13, 13),
+//   'body': #f2f2f3,
+// );
 
 $main-colors: (
-  'background': rgb(9, 13, 13),
-  'body': #f2f2f3,
+  'background': #171c1a,
+  'foreground': #fff,
+  'tint': #00ff95,
 );
 
-$project-colors: (
-  'groovy': #ff0000,
-  'binnacle': #21b7eb,
-  'berilio': #1d7259,
-  'breeze': #cbd95f,
-);
+// $project-colors: (
+//   'groovy': #ff0000,
+//   'binnacle': #21b7eb,
+//   'berilio': #1d7259,
+//   'breeze': #cbd95f,
+// );
 
 $screen-widths: (
   's': 640,
   'm': 800,
   'l': 1024,
+  'xl': 1280,
 );

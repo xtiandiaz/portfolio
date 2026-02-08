@@ -1,3 +1,4 @@
+import type { Tag } from './Tag'
 import * as Color from '../utils/color'
 
 export interface ProjectItem {
@@ -6,7 +7,7 @@ export interface ProjectItem {
   type: Project.Type
   aspectRatio: string
   palette: Project.Palette
-  tags: Project.Tag[]
+  tags: Tag[]
   preview?: string
   options?: Partial<Project.Options>
 }
@@ -41,12 +42,6 @@ export namespace Project {
     size: { w: number; h: number }
     alt?: string
     name?: string
-  }
-
-  export interface Tag {
-    label: string
-    backgroundColor: string
-    priority: number
   }
 
   export const typeName = (type: Type) => {

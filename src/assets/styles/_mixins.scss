@@ -1,24 +1,36 @@
 @use 'sass:color';
 @use 'sass:meta';
 @use 'sass:map';
+@use 'sass:string';
 @use './svars';
+@use './functions';
+
+@mixin font($style-key) {
+  & {
+    font-family: functions.font($style-key), sans-serif;
+  }
+}
 
 @mixin color-cvars {
   :root {
-    @each $scheme in (light, dark) {
-      $color-map: if($scheme == light, svars.$light-scheme-colors, svars.$dark-scheme-colors);
+    // @each $scheme in (light, dark) {
+    //   $color-map: if($scheme == light, svars.$light-scheme-colors, svars.$dark-scheme-colors);
 
-      @media (prefers-color-scheme: $scheme) {
-        @each $key, $color in $color-map {
-          --color-#{$key}: #{$color};
-        }
-      }
-    }
+    //   @media (prefers-color-scheme: $scheme) {
+    //     @each $key, $color in $color-map {
+    //       --color-#{$key}: #{$color};
+    //     }
+    //   }
+    // }
 
-    @each $key, $color in svars.$project-colors {
+    // @each $key, $color in svars.$project-colors {
+    //   --color-#{$key}: #{$color};
+    //   --color-#{$key}-darker: #{color.scale($color, $lightness: -25%)};
+    //   --color-#{$key}-lighter: #{color.scale($color, $lightness: 25%)};
+    // }
+
+    @each $key, $color in svars.$main-colors {
       --color-#{$key}: #{$color};
-      --color-#{$key}-darker: #{color.scale($color, $lightness: -25%)};
-      --color-#{$key}-lighter: #{color.scale($color, $lightness: 25%)};
     }
   }
 }
@@ -38,6 +50,13 @@
     @if $left {
       left: $left;
     }
+  }
+}
+
+@mixin size($width, $height) {
+  & {
+    width: $width;
+    height: $height;
   }
 }
 

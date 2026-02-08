@@ -1,18 +1,37 @@
+@use './svars';
 @use './mixins';
+@use './functions';
 
 @include mixins.color-cvars;
 
 @font-face {
-  font-family: 'Inter Medium';
-  src: url('../fonts/Inter-Medium.woff2') format('woff2');
+  font-family: 'Inter Light';
+  src: url('../fonts/Inter-Light.woff2') format('woff2');
+}
+.font-light {
+  font-family: 'Inter Light', sans-serif;
 }
 @font-face {
   font-family: 'Inter Regular';
   src: url('../fonts/Inter-Regular.woff2') format('woff2');
 }
+.font-regular {
+  font-family: 'Inter Regular', sans-serif;
+}
+@font-face {
+  font-family: 'Inter Medium';
+  src: url('../fonts/Inter-Medium.woff2') format('woff2');
+}
+.font-medium {
+  font-family: 'Inter Medium', sans-serif;
+}
 @font-face {
   font-family: 'Inter SemiBold';
   src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
+}
+.font-semibold,
+strong {
+  font-family: 'Inter SemiBold', sans-serif;
 }
 
 * {
@@ -22,25 +41,36 @@
 
 html,
 body {
+  @include mixins.font('regular');
   background-color: var(--color-background);
-  font-family: 'Inter Regular', sans-serif;
+  background-image: url('/public/img/shared/background_texture.png');
+  color: var(--color-foreground);
   font-size: 16px;
   margin: 0;
   padding: 0;
   position: relative;
 }
 
+h1,
+h2,
+h3 {
+  @include mixins.font('regular');
+  font-size: 1rem;
+  margin: 0;
+}
+
 main {
   @include mixins.position(fixed, 0, 0, 0, 0);
 }
 
-article {
-  @include mixins.position(absolute, 0, 0, 0, 0);
-  overflow-y: scroll;
-  padding: 2rem;
-  z-index: 10;
-
-  @include mixins.if-screen-width('s', 'max') {
-    padding: 0rem;
-  }
+#spotlight {
+  aspect-ratio: 1;
+  background-image: url('/public/img/shared/background_spotlight.png');
+  bottom: -4rem;
+  height: 384px;
+  left: 50%;
+  position: fixed;
+  width: 1024px;
+  transform: translateX(-50%);
+  z-index: -100;
 }

@@ -1,14 +1,16 @@
-import data from '@/assets/json/projects.json'
+import data from '@/assets/json/content.json'
 import { Project, type ProjectItem } from '@/models/Project'
+import type { Skills } from '@/models/Skills'
 import { shiftLightness } from '@/utils/color'
 import { snakeCase } from 'change-case'
 
-export class ProjectRepo {
+export class ContentRepo {
   readonly projects: Project[]
-  private static _instance: ProjectRepo
+  readonly skills: Skills
+  private static _instance: ContentRepo
 
   constructor() {
-    this.projects = data.map((p) => {
+    this.projects = data.projects.map((p) => {
       const name = p['name']
       const type = p['type'] as Project.Type
       const color = p['color']!
@@ -27,13 +29,15 @@ export class ProjectRepo {
         aspectRatio: p['aspectRatio']!.replace(':', '/'),
       } as Project
     })
+
+    this.skills = data.skills
   }
 
-  static get instance(): ProjectRepo {
-    if (!ProjectRepo._instance) {
-      ProjectRepo._instance = new ProjectRepo()
+  static get instance(): ContentRepo {
+    if (!ContentRepo._instance) {
+      ContentRepo._instance = new ContentRepo()
     }
-    return ProjectRepo._instance!
+    return ContentRepo._instance!
   }
 
   get items(): ProjectItem[] {

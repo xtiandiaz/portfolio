@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProjectRepo } from '@/services/ProjectRepo';
+import { ContentRepo } from '@/services/ContentRepo';
 import { ProjectTags } from '@/components';
 import * as Color from '@/utils/color'
 import router from '@/router';
@@ -9,7 +9,7 @@ const { id } = defineProps<{
   id: string,
 }>()
 
-const project = ProjectRepo.instance.projects.find(p => p.id == id)
+const project = ContentRepo.instance.projects.find(p => p.id == id)
 
 function close() {
   router.replace('/')
@@ -52,9 +52,32 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 @use '@/assets/styles/mixins';
 
+@mixin first-and-last-border-radius($radius) {
+  &:first-of-type {
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+  }
+
+  &:last-of-type {
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+}
+
 .background {
   @include mixins.position(absolute, 0, 0, 0, 0);
   z-index: -10;
+}
+
+article {
+  @include mixins.position(absolute, 0, 0, 0, 0);
+  overflow: auto;
+  padding: 2rem;
+  z-index: 10;
+
+  @include mixins.if-screen-width('s', 'max') {
+    padding: 0rem;
+  }
 }
 
 section {
@@ -75,21 +98,20 @@ section {
   }
 
   img {
+    @include first-and-last-border-radius(1rem);
     border-radius: 0.25rem;
     display: block;
     max-width: 100%;
 
-    &:first-of-type {
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-    }
-
-    &:last-of-type {
-      border-bottom-left-radius: 1rem;
-      border-bottom-right-radius: 1rem;
-    }
-
     background-color: rgba(255 255 255 / 0.5);
+  }
+
+  @include mixins.if-screen-width('s', 'max') {
+    border-radius: 0.5rem;
+
+    img {
+      @include first-and-last-border-radius(0.25rem);
+    }
   }
 }
 
