@@ -33,15 +33,15 @@ const repo = ProjectRepo.instance
     margin-bottom: $gap;
   }
 
-  @media (max-width: 1024px) {
+  @include mixins.if-screen-width('l', 'max') {
     columns: 3;
   }
 
-  @media (max-width: 800px) {
+  @include mixins.if-screen-width('m', 'max') {
     columns: 2;
   }
 
-  @media (max-width: 640px) {
+  @include mixins.if-screen-width('s', 'max') {
     columns: 1;
   }
 }

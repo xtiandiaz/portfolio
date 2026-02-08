@@ -40,7 +40,7 @@ article {
   padding: 2rem;
   z-index: 10;
 
-  @media (max-width: 640px) {
-    padding: 1rem;
+  @include mixins.if-screen-width('s', 'max') {
+    padding: 0rem;
   }
 }
