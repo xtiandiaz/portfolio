@@ -27,7 +27,12 @@ const { project } = defineProps<{
   margin: 0;
   overflow: hidden;
   position: relative;
+  transition: transform 0.25s ease-in-out;
   width: 100%;
+
+  &:hover {
+    transform: scale(1.025);
+  }
 
   img {
     height: 100%;
