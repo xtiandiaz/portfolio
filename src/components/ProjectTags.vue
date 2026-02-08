@@ -16,7 +16,7 @@ defineProps<{ tags: Tag[] }>()
 
 .tags {
   display: flex;
-  gap: 0.125rem;
+  gap: 0.25rem;
 }
 
 .tag {

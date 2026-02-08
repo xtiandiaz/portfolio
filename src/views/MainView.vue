@@ -16,7 +16,7 @@ const repo = ContentRepo.instance
     <footer>
       <img id="signature" src="/public/img/shared/signature.png" alt="Cristian Díaz – personal signature" />
       <h1 id="heading">
-        Creative and meticulous <strong>Web & Game Developer</strong> + <strong>UI & GraphicDesigner</strong>
+        Creative and meticulous <strong>Web & Game Developer</strong> + <strong>UI & Graphic Designer</strong>
       </h1>
       <div id="skills">
         <div class="languages">
@@ -31,6 +31,8 @@ const repo = ContentRepo.instance
       </div>
     </footer>
   </main>
+
+  <div id="spotlight"></div>
 </template>
 
 <style scoped lang="scss">
@@ -43,7 +45,7 @@ main {
   flex-direction: column;
   gap: 3rem;
   overflow: auto;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
 }
 
 .project-items {
@@ -78,6 +80,7 @@ footer {
   gap: 2rem;
   margin: 0 1rem;
   max-width: functions.screen-width('m');
+  position: relative;
   text-align: center;
 
   a.icon {
@@ -109,7 +112,7 @@ footer {
   >div {
     display: flex;
     flex-flow: row wrap;
-    gap: 0.25rem;
+    gap: 0.375rem;
     justify-content: center;
 
     &.languages {
@@ -118,5 +121,14 @@ footer {
       }
     }
   }
+}
+
+#spotlight {
+  @include mixins.position(fixed, none, none, 0, 50%);
+  background-image: url('/public/img/shared/background_spotlight.png');
+  height: 512px;
+  width: 1280px;
+  transform: translateX(-50%);
+  z-index: -100;
 }
 </style>

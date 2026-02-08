@@ -46,6 +46,7 @@ body {
   background-image: url('/public/img/shared/background_texture.png');
   color: var(--color-foreground);
   font-size: 16px;
+  line-height: 1.5;
   margin: 0;
   padding: 0;
   position: relative;
@@ -61,16 +62,4 @@ h3 {
 
 main {
   @include mixins.position(fixed, 0, 0, 0, 0);
-}
-
-#spotlight {
-  aspect-ratio: 1;
-  background-image: url('/public/img/shared/background_spotlight.png');
-  bottom: -4rem;
-  height: 384px;
-  left: 50%;
-  position: fixed;
-  width: 1024px;
-  transform: translateX(-50%);
-  z-index: -100;
 }
