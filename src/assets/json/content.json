@@ -4,20 +4,28 @@
       "name": "Emerald",
       "type": "game-dev",
       "aspectRatio": "4:3",
-      "color": "#192026",
+      "color": "#00CC7A",
       "link": "https://github.com/xtiandiaz/emerald"
+    },
+    {
+      "name": "Phorm",
+      "type": "game-art",
+      "aspectRatio": "1:1",
+      "color": "#000000"
     },
     {
       "name": "Lingoji",
       "type": "app-dev",
       "aspectRatio": "1:1",
-      "color": "#4d27ca"
+      "color": "#4d27ca",
+      "enabled": false
     },
     {
       "name": "Suomingo",
       "type": "app-dev",
       "aspectRatio": "3:4",
-      "color": "#1b1e2b"
+      "color": "#1b1e2b",
+      "enabled": false
     },
     {
       "name": "Groovy",

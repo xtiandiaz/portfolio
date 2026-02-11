@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ProjectItem } from '@/models/Project';
-import { ProjectTags } from './';
+import { Tags } from './';
 
 const { project } = defineProps<{
   project: ProjectItem
@@ -12,8 +12,8 @@ const { project } = defineProps<{
     'aspect-ratio': project.aspectRatio,
     'background-color': project.palette.default
   }">
-    <img :alt="`${project.name} preview`" :src="`/img/${project.id}/preview.png`" />
-    <ProjectTags :tags="project.tags"></ProjectTags>
+    <img :alt="`${project.name} preview`" :src="`/img/${project.id}_preview.png`" />
+    <Tags :tags="project.tags"></Tags>
   </section>
 </template>
 
@@ -24,7 +24,7 @@ const { project } = defineProps<{
   border-radius: 1rem;
   box-sizing: border-box;
   display: inline-block;
-  box-shadow: 0 0 1.5rem rgba(0 0 0 / 0.5);
+  box-shadow: 0 0 1.5rem rgba(0 0 0 / 0.25);
   margin: 0;
   overflow: hidden;
   position: relative;

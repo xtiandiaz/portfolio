@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ContentRepo } from '@/services/ContentRepo';
-import { ProjectTags } from '@/components';
+import { Tags } from '@/components';
 import * as Color from '@/utils/color'
 import router from '@/router';
 import { onBeforeUnmount, onMounted } from 'vue';
@@ -40,9 +40,9 @@ onBeforeUnmount(() => {
     </div>
     <article>
       <section :style="{ 'background-color': project.palette.default }">
-        <ProjectTags :tags="project.tags"></ProjectTags>
+        <Tags :tags="project.tags"></Tags>
 
-        <img v-for="(image, index) of project.images" :src="`/img/${project.id}/showcase_${index + 1}.png`"
+        <img v-for="(image, index) of project.images" :src="`/img/${project.id}_showcase_${index + 1}.png`"
           :alt="image.alt" :style="{ 'aspect-ratio': image.size.w / image.size.h }" />
       </section>
     </article>

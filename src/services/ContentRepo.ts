@@ -10,25 +10,27 @@ export class ContentRepo {
   private static _instance: ContentRepo
 
   constructor() {
-    this.projects = data.projects.map((p) => {
-      const name = p['name']
-      const type = p['type'] as Project.Type
-      const color = p['color']!
-      const darkerColor = shiftLightness(color, -0.25)
+    this.projects = data.projects
+      .filter((p) => p['enabled'] ?? true)
+      .map((p) => {
+        const name = p['name']
+        const type = p['type'] as Project.Type
+        const color = p['color']!
+        const darkerColor = shiftLightness(color, -0.25)
 
-      return {
-        id: snakeCase(name),
-        tags: Project.tags(name, type, darkerColor),
-        palette: {
-          default: color,
-          darker: darkerColor,
-          darkest: shiftLightness(color, -0.75),
-          lighter: shiftLightness(color, 0.25),
-        },
-        ...p,
-        aspectRatio: p['aspectRatio']!.replace(':', '/'),
-      } as Project
-    })
+        return {
+          id: snakeCase(name),
+          tags: Project.tags(name, type, darkerColor),
+          palette: {
+            default: color,
+            darker: darkerColor,
+            darkest: shiftLightness(color, -0.75),
+            lighter: shiftLightness(color, 0.25),
+          },
+          ...p,
+          aspectRatio: p['aspectRatio']!.replace(':', '/'),
+        } as Project
+      })
 
     this.skills = data.skills
   }

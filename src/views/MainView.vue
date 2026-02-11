@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ContentRepo } from '@/services/ContentRepo';
-import { ProjectItem, AttributeTag } from '@/components';
+import { ProjectItemLinked, AttributeTag } from '@/components';
 
 const repo = ContentRepo.instance
 </script>
@@ -9,8 +9,7 @@ const repo = ContentRepo.instance
   <main>
     <article>
       <div class="project-items">
-        <ProjectItem v-for="(project, index) of repo.items" :key="index" :project="project"
-          @click="$router.push(`/project/${project.id}`)" />
+        <ProjectItemLinked v-for="(project, index) of repo.items" :key="index" :project="project" />
       </div>
     </article>
     <footer>
@@ -56,7 +55,8 @@ main {
   font-size: 0;
   max-width: functions.screen-width('xl');
 
-  .project-item {
+  a {
+    display: block;
     margin-bottom: $gap;
   }
 
@@ -117,7 +117,7 @@ footer {
 
     &.languages {
       .tag {
-        border-radius: 1em;
+        border-radius: 2em;
       }
     }
   }

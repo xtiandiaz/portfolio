@@ -9,6 +9,7 @@ export interface ProjectItem {
   palette: Project.Palette
   tags: Tag[]
   preview?: string
+  link?: string
   options?: Partial<Project.Options>
 }
 
@@ -22,6 +23,7 @@ export namespace Project {
   export enum Type {
     APP_DEV = 'app-dev',
     BRANDING = 'branding',
+    GAME_ART = 'game-art',
     GAME_DEV = 'game-dev',
     ILLUSTRATION = 'illustration',
     WEB_DEV = 'web-dev',
@@ -50,6 +52,8 @@ export namespace Project {
         return 'App Dev.'
       case Type.BRANDING:
         return 'Branding'
+      case Type.GAME_ART:
+        return 'Game Art'
       case Type.GAME_DEV:
         return 'Game Dev.'
       case Type.ILLUSTRATION:
