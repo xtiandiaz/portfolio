@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Tag } from '@/models/Tag';
-import { AttributeTag } from './'
+import { AttributeTag } from '.'
 
 defineProps<{ tags: Tag[] }>()
 </script>

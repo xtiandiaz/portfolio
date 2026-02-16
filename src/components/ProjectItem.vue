@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ProjectItem } from '@/models/Project';
-import { Tags } from './';
+import { AttributeTags } from './';
 
 const { project } = defineProps<{
   project: ProjectItem
@@ -13,7 +13,7 @@ const { project } = defineProps<{
     'background-color': project.palette.default
   }">
     <img :alt="`${project.name} preview`" :src="`/img/${project.id}_preview.png`" />
-    <Tags :tags="project.tags"></Tags>
+    <AttributeTags :tags="project.tags"></AttributeTags>
   </section>
 </template>
 

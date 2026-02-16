@@ -24,7 +24,7 @@ defineProps<{
   color: functions.color('foreground');
   display: inline-block;
   font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.125rem 0.375rem;
 
   &.primary {
     @include mixins.font('semibold');
