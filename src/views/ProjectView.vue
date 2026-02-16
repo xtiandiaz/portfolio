@@ -41,9 +41,13 @@ onBeforeUnmount(() => {
     <article>
       <section :style="{ 'background-color': project.palette.default }">
         <AttributeTags :tags="project.tags"></AttributeTags>
-
-        <img v-for="(image, index) of project.images" :src="`/img/${project.id}_showcase_${index + 1}.png`"
-          :alt="image.alt" :style="{ 'aspect-ratio': image.size.w / image.size.h }" />
+        <div>
+          <div class="img" v-for="(image, index) of project.images" :alt="image.alt" :key="index" :style="{
+            'aspect-ratio': image.size.w / image.size.h,
+            'background-image': `url(/img/${project.id}_showcase_${index + 1}.png)`
+          }">
+          </div>
+        </div>
       </section>
     </article>
   </main>
@@ -53,12 +57,12 @@ onBeforeUnmount(() => {
 @use '@/assets/styles/mixins';
 
 @mixin first-and-last-border-radius($radius) {
-  &:first-of-type {
+  &:first-child {
     border-top-left-radius: $radius;
     border-top-right-radius: $radius;
   }
 
-  &:last-of-type {
+  &:last-child {
     border-bottom-left-radius: $radius;
     border-bottom-right-radius: $radius;
   }
@@ -97,8 +101,9 @@ section {
     @include mixins.position(absolute, $margin, none, none, $margin);
   }
 
-  img {
+  .img {
     @include first-and-last-border-radius(1rem);
+    background-size: cover;
     border-radius: 0.25rem;
     display: block;
     max-width: 100%;
@@ -109,7 +114,7 @@ section {
   @include mixins.if-screen-width('s', 'max') {
     border-radius: 0.5rem;
 
-    img {
+    .img {
       @include first-and-last-border-radius(0.25rem);
     }
   }

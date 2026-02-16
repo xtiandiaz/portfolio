@@ -4,6 +4,7 @@
 @use 'sass:string';
 @use './svars';
 @use './functions';
+@use './typography';
 
 @mixin font($style-key) {
   & {
@@ -62,6 +63,7 @@
 
 @mixin if-screen-width($key, $constraint) {
   $width: map.get(svars.$screen-widths, $key);
+
   & {
     @if $constraint == 'max' {
       @media (max-width: #{$width}px) {

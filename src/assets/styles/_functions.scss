@@ -2,14 +2,6 @@
 @use 'sass:string';
 @use './svars';
 
-@function color($key, $alpha: 1) {
-  @return rgba(from map.get(svars.$main-colors, $key) r g b / $alpha);
-}
-
-@function screen-width($key) {
-  @return #{map.get(svars.$screen-widths, $key)}px;
-}
-
 @function font($style-key) {
   $style-key: string.to-lower-case($style-key);
   $style: '';
@@ -25,6 +17,14 @@
   }
 
   @return 'Inter #{$style}';
+}
+
+@function color($key, $alpha: 1) {
+  @return rgba(from map.get(svars.$main-colors, $key) r g b / $alpha);
+}
+
+@function screen-width($key) {
+  @return #{map.get(svars.$screen-widths, $key)}px;
 }
 
 @function getProjectVar($key, $type, $option: none) {

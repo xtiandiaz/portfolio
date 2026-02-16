@@ -13,7 +13,7 @@ const repo = ContentRepo.instance
       </div>
     </article>
     <footer>
-      <img id="signature" src="/public/img/shared/signature.png" alt="Cristian Díaz – personal signature" />
+      <div id="signature" src="/public/img/shared/signature.png" alt="Cristian Díaz – personal signature"></div>
       <h1 id="heading">
         Creative and meticulous <strong>Web & Game Developer</strong> + <strong>UI & Graphic Designer</strong>
       </h1>
@@ -28,6 +28,9 @@ const repo = ContentRepo.instance
       <div id="links">
         <a class="icon github" href="https://github.com/xtiandiaz" target="_blank"></a>
       </div>
+      <span class="caption">
+        Made with <a href="https://github.com/xtiandiaz/portfolio" target="_blank">Vue + SASS</a>
+      </span>
     </footer>
   </main>
 
@@ -92,10 +95,16 @@ footer {
       background-size: cover;
     }
   }
+
+  .caption {
+    opacity: 0.75;
+  }
 }
 
 #signature {
-  height: auto;
+  aspect-ratio: 136 / 43;
+  background-image: url('/public/img/shared/signature.png');
+  background-size: cover;
   max-width: 320px;
   width: 90%;
 }
@@ -121,6 +130,10 @@ footer {
       }
     }
   }
+}
+
+#links {
+  line-height: 0;
 }
 
 #spotlight {
