@@ -60,19 +60,3 @@
     height: $height;
   }
 }
-
-@mixin if-screen-width($key, $constraint) {
-  $width: map.get(svars.$screen-widths, $key);
-
-  & {
-    @if $constraint == 'max' {
-      @media (max-width: #{$width}px) {
-        @content;
-      }
-    } @else if $constraint == 'min' {
-      @media (min-width: #{$width}px) {
-        @content;
-      }
-    }
-  }
-}

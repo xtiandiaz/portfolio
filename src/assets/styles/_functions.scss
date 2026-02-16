@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use 'sass:string';
+@use 'sass:color';
 @use './svars';
 
 @function font($style-key) {
@@ -20,7 +21,7 @@
 }
 
 @function color($key, $alpha: 1) {
-  @return rgba(from map.get(svars.$main-colors, $key) r g b / $alpha);
+  @return rgba(map.get(svars.$main-colors, $key), $alpha);
 }
 
 @function screen-width($key) {

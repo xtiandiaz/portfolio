@@ -10,9 +10,11 @@ const { project } = defineProps<{
 <template>
   <section class="project-item" :style="{
     'aspect-ratio': project.aspectRatio,
-    'background-color': project.palette.default
+    'background-image': `url(/img/${project.id}_preview.png)`
   }">
-    <img :alt="`${project.name} preview`" :src="`/img/${project.id}_preview.png`" />
+    <a v-if="project.link" :href="project.link" target="_blank"></a>
+    <RouterLink v-else :to="`/project/${project.id}`" />
+
     <AttributeTags :tags="project.tags"></AttributeTags>
   </section>
 </template>
@@ -20,25 +22,18 @@ const { project } = defineProps<{
 <style scoped lang="scss">
 @use '@/assets/styles/mixins';
 
-.project-item {
+section {
+  background-color: rgba(0 0 0 / 0.25);
+  background-size: cover;
   border-radius: 1rem;
-  box-sizing: border-box;
+  // box-shadow: 0 0 1.5rem rgba(0 0 0 / 0.25);
   display: inline-block;
-  box-shadow: 0 0 1.5rem rgba(0 0 0 / 0.25);
-  margin: 0;
-  overflow: hidden;
   position: relative;
-  transition: transform 0.25s ease-in-out;
+  // transition: transform 0.25s ease-in-out;
   width: 100%;
 
   &:hover {
-    transform: scale(1.025);
-  }
-
-  img {
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
+    // transform: scale(1.025);
   }
 
   .tags {
@@ -46,5 +41,11 @@ const { project } = defineProps<{
 
     @include mixins.position(absolute, none, none, $margin, $margin);
   }
+}
+
+a {
+  @include mixins.position(absolute, 0, 0, 0, 0);
+  // border: 1px solid white;
+  display: block;
 }
 </style>

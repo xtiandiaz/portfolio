@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted } from 'vue';
 import { ContentRepo } from '@/services/ContentRepo';
 import { AttributeTags } from '@/components';
 import * as Color from '@/utils/color'
 import router from '@/router';
-import { onBeforeUnmount, onMounted } from 'vue';
 
 const { id } = defineProps<{
   id: string,
@@ -54,6 +54,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/styles/functions';
 @use '@/assets/styles/mixins';
 
 @mixin first-and-last-border-radius($radius) {
@@ -79,7 +80,7 @@ article {
   padding: 2rem;
   z-index: 10;
 
-  @include mixins.if-screen-width('s', 'max') {
+  @media (width <=functions.screen-width('s')) {
     padding: 0rem;
   }
 }
@@ -90,10 +91,10 @@ section {
   flex-direction: column;
   gap: 0.5rem;
   margin: 0 auto;
+  max-width: functions.screen-width('l');
   padding: 0.25em;
   pointer-events: all;
   position: relative;
-  max-width: 1024px;
 
   .tags {
     $margin: 0.75rem;
@@ -111,7 +112,7 @@ section {
     background-color: rgba(255 255 255 / 0.5);
   }
 
-  @include mixins.if-screen-width('s', 'max') {
+  @media (width <=functions.screen-width('s')) {
     border-radius: 0.5rem;
 
     .img {

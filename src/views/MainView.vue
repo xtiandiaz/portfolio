@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ContentRepo } from '@/services/ContentRepo';
-import { ProjectItemLinked, AttributeTag } from '@/components';
+import { ProjectItem, AttributeTag } from '@/components';
 
 const repo = ContentRepo.instance
 </script>
@@ -8,14 +8,13 @@ const repo = ContentRepo.instance
 <template>
   <main>
     <article>
-      <div class="project-items">
-        <ProjectItemLinked v-for="(project, index) of repo.items" :key="index" :project="project" />
-      </div>
+      <ProjectItem v-for="(project, index) of repo.items" :key="index" :project="project" />
     </article>
     <footer>
       <div id="signature" src="/public/img/shared/signature.png" alt="Cristian Díaz – personal signature"></div>
       <h1 id="heading">
-        Creative and meticulous <strong>Web & Game Developer</strong> + <strong>UI & Graphic Designer</strong>
+        Creative and meticulous <strong class="role">Web & Game Developer</strong> + <strong class="role">UI & Graphic
+          Designer</strong>
       </h1>
       <div id="skills">
         <div class="languages">
@@ -34,7 +33,7 @@ const repo = ContentRepo.instance
     </footer>
   </main>
 
-  <div id="spotlight"></div>
+
 </template>
 
 <style scoped lang="scss">
@@ -50,29 +49,34 @@ main {
   padding: 2rem 1rem 1rem 1rem;
 }
 
-.project-items {
+article {
   $gap: 1rem;
 
+  column-count: 4;
   column-gap: $gap;
-  columns: 4;
-  font-size: 0;
+  font-size: 0; // to prevent extra gap between sections
   max-width: functions.screen-width('xl');
+  width: 100%;
+  // line-height: 0;
 
-  a {
-    display: block;
+  >* {
+    width: 100%;
+  }
+
+  :deep(section) {
     margin-bottom: $gap;
   }
 
-  @include mixins.if-screen-width('l', 'max') {
-    columns: 3;
+  @media (width <=functions.screen-width('l')) {
+    column-count: 3;
   }
 
-  @include mixins.if-screen-width('m', 'max') {
-    columns: 2;
+  @media (width <=functions.screen-width('m')) {
+    column-count: 2;
   }
 
-  @include mixins.if-screen-width('s', 'max') {
-    columns: 1;
+  @media (width <=functions.screen-width('s')) {
+    column-count: 1;
   }
 }
 
@@ -81,12 +85,11 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin: 0 1rem;
   max-width: functions.screen-width('m');
   position: relative;
   text-align: center;
 
-  a.icon {
+  .icon {
     @include mixins.size(48px, 48px);
     display: inline-block;
 
@@ -94,6 +97,10 @@ footer {
       background-image: url('/public/img/shared/icons/github.png');
       background-size: cover;
     }
+  }
+
+  .role {
+    white-space: nowrap;
   }
 
   .caption {
@@ -123,25 +130,16 @@ footer {
     flex-flow: row wrap;
     gap: 0.375rem;
     justify-content: center;
+  }
 
-    &.languages {
-      .tag {
-        border-radius: 2em;
-      }
+  .languages {
+    .tag {
+      border-radius: 2em;
     }
   }
 }
 
 #links {
   line-height: 0;
-}
-
-#spotlight {
-  @include mixins.position(fixed, none, none, 0, 50%);
-  background-image: url('/public/img/shared/background_spotlight.png');
-  height: 512px;
-  width: 1280px;
-  transform: translateX(-50%);
-  z-index: -100;
 }
 </style>
