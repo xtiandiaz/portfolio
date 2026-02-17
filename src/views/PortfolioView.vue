@@ -10,7 +10,8 @@ const repo = ContentRepo.instance
     <article>
       <ProjectItem v-for="(project, index) of repo.items" :key="index" :project="project" />
     </article>
-    <footer>
+
+    <aside>
       <div id="signature" src="/public/img/shared/signature.png" alt="Cristian Díaz – personal signature"></div>
       <h1 id="heading">
         Creative and meticulous <strong class="role">Web & Game Developer</strong> + <strong class="role">UI & Graphic
@@ -28,12 +29,10 @@ const repo = ContentRepo.instance
         <a class="icon github" href="https://github.com/xtiandiaz" target="_blank"></a>
       </div>
       <span class="caption">
-        Made with <a href="https://github.com/xtiandiaz/portfolio" target="_blank">Vue + SASS</a>
+        © 2026 — Made with <a href="https://github.com/xtiandiaz/portfolio" target="_blank">Vue + SASS</a>
       </span>
-    </footer>
+    </aside>
   </main>
-
-
 </template>
 
 <style scoped lang="scss">
@@ -41,12 +40,13 @@ const repo = ContentRepo.instance
 @use '@/assets/styles/mixins';
 
 main {
+  @include mixins.safe-inset-padding(1rem, 1rem, 1rem, 1rem);
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  height: 100%;
   overflow: auto;
-  padding: 2rem 1rem 1rem 1rem;
 }
 
 article {
@@ -57,11 +57,6 @@ article {
   font-size: 0; // to prevent extra gap between sections
   max-width: functions.screen-width('xl');
   width: 100%;
-  // line-height: 0;
-
-  >* {
-    width: 100%;
-  }
 
   :deep(section) {
     margin-bottom: $gap;
@@ -80,7 +75,7 @@ article {
   }
 }
 
-footer {
+aside {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -88,6 +83,10 @@ footer {
   max-width: functions.screen-width('m');
   position: relative;
   text-align: center;
+
+  .role {
+    white-space: nowrap;
+  }
 
   .icon {
     @include mixins.size(48px, 48px);
@@ -97,10 +96,6 @@ footer {
       background-image: url('/public/img/shared/icons/github.png');
       background-size: cover;
     }
-  }
-
-  .role {
-    white-space: nowrap;
   }
 
   .caption {

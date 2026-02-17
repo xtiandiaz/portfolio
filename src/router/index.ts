@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { MainView, ProjectView } from '@/views'
+import { PortfolioView, ProjectView } from '@/views'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       components: {
-        default: MainView,
+        default: PortfolioView,
       },
       children: [
         {

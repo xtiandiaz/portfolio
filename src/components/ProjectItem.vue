@@ -26,14 +26,13 @@ section {
   background-color: rgba(0 0 0 / 0.25);
   background-size: cover;
   border-radius: 1rem;
-  // box-shadow: 0 0 1.5rem rgba(0 0 0 / 0.25);
   display: inline-block;
   position: relative;
-  // transition: transform 0.25s ease-in-out;
   width: 100%;
 
-  &:hover {
-    // transform: scale(1.025);
+  a {
+    @include mixins.position(absolute, 0, 0, 0, 0);
+    display: block;
   }
 
   .tags {
@@ -41,11 +40,15 @@ section {
 
     @include mixins.position(absolute, none, none, $margin, $margin);
   }
-}
 
-a {
-  @include mixins.position(absolute, 0, 0, 0, 0);
-  // border: 1px solid white;
-  display: block;
+  // HACK to ignore Safari cuz these effects render awfully only there
+  @supports not (font: -apple-system-body) {
+    box-shadow: 0 0 1.5rem rgba(0 0 0 / 0.25);
+    transition: transform 0.25s ease-in-out;
+
+    &:hover {
+      transform: scale(1.025);
+    }
+  }
 }
 </style>

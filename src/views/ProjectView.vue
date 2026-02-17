@@ -16,7 +16,7 @@ function close() {
 }
 
 function handleClick(e: PointerEvent) {
-  if ((e.target as HTMLElement)?.tagName.toLowerCase() == 'article') {
+  if ((e.target as HTMLElement)?.tagName.toLowerCase() == 'main') {
     close()
   }
 }
@@ -27,6 +27,11 @@ function handleKeyDown(e: KeyboardEvent) {
 }
 
 onMounted(() => {
+  if (!project) {
+    close()
+    return
+  }
+
   window.addEventListener('keydown', handleKeyDown)
 })
 onBeforeUnmount(() => {
@@ -35,22 +40,22 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <main v-if="project" :key="project.id" @click="(e) => handleClick(e)">
+  <div class="wrapper" v-if="project" :key="project.id" @click="(e) => handleClick(e)">
     <div class="background" :style="{ 'background-color': Color.setOpacity(project.palette.darkest, 0.9) }">
     </div>
-    <article>
-      <section :style="{ 'background-color': project.palette.default }">
+
+    <main>
+      <article :style="{ 'background-color': project.palette.default }">
         <AttributeTags :tags="project.tags"></AttributeTags>
-        <div>
-          <div class="img" v-for="(image, index) of project.images" :alt="image.alt" :key="index" :style="{
-            'aspect-ratio': image.size.w / image.size.h,
-            'background-image': `url(/img/${project.id}_showcase_${index + 1}.png)`
-          }">
-          </div>
-        </div>
-      </section>
-    </article>
-  </main>
+
+        <section v-for="(image, index) of project.images" :alt="image.alt" :key="index" :style="{
+          'aspect-ratio': image.aspectRatio,
+          'background-image': `url(/img/${project.id}_showcase${index + 1}.png)`
+        }">
+        </section>
+      </article>
+    </main>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -58,38 +63,41 @@ onBeforeUnmount(() => {
 @use '@/assets/styles/mixins';
 
 @mixin first-and-last-border-radius($radius) {
-  &:first-child {
+  &:first-of-type {
     border-top-left-radius: $radius;
     border-top-right-radius: $radius;
   }
 
-  &:last-child {
+  &:last-of-type {
     border-bottom-left-radius: $radius;
     border-bottom-right-radius: $radius;
   }
 }
 
-.background {
+.wrapper {
   @include mixins.position(absolute, 0, 0, 0, 0);
-  z-index: -10;
-}
 
-article {
-  @include mixins.position(absolute, 0, 0, 0, 0);
-  overflow: auto;
-  padding: 2rem;
-  z-index: 10;
-
-  @media (width <=functions.screen-width('s')) {
-    padding: 0rem;
+  .background {
+    @include mixins.position(absolute, 0, 0, 0, 0);
   }
 }
 
-section {
-  border-radius: 1.25rem;
+main {
+  @include mixins.position(absolute, 0, 0, 0, 0);
+  @include mixins.safe-inset-padding(2rem, 2rem, 2rem, 2rem);
+  overflow-y: auto;
+  padding: 2rem;
+
+  @media (width <=functions.screen-width('s')) {
+    @include mixins.safe-inset-padding();
+  }
+}
+
+article {
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
   margin: 0 auto;
   max-width: functions.screen-width('l');
   padding: 0.25em;
@@ -102,8 +110,8 @@ section {
     @include mixins.position(absolute, $margin, none, none, $margin);
   }
 
-  .img {
-    @include first-and-last-border-radius(1rem);
+  section {
+    @include first-and-last-border-radius(0.75rem);
     background-size: cover;
     border-radius: 0.25rem;
     display: block;
@@ -115,7 +123,7 @@ section {
   @media (width <=functions.screen-width('s')) {
     border-radius: 0.5rem;
 
-    .img {
+    section {
       @include first-and-last-border-radius(0.25rem);
     }
   }
@@ -130,7 +138,7 @@ section {
     transition: opacity calc($duration - 0.1s);
   }
 
-  article {
+  main {
     transition: all $duration cubic-bezier(0.19, 1, 0.22, 1);
   }
 }
@@ -139,11 +147,11 @@ section {
 .v-leave-to {
 
   .background,
-  article {
+  main {
     opacity: 0;
   }
 
-  article {
+  main {
     transform: translateY(5%) scale(0.95);
   }
 }

@@ -28,7 +28,7 @@ defineProps<{
 
   &.primary {
     @include mixins.font('semibold');
-    background-color: functions.color('foreground', 0.6);
+    background-color: functions.color('foreground', 0.55);
     border-color: functions.color('foreground', 0.25);
     color: functions.color('background');
   }

@@ -41,7 +41,7 @@ export namespace Project {
   }
 
   export interface Image {
-    size: { w: number; h: number }
+    aspectRatio: string
     alt?: string
     name?: string
   }

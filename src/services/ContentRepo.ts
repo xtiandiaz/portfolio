@@ -28,7 +28,6 @@ export class ContentRepo {
             lighter: shiftLightness(color, 0.25),
           },
           ...p,
-          aspectRatio: p['aspectRatio']!.replace(':', '/'),
         } as Project
       })
 
