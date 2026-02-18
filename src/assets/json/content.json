@@ -2,40 +2,46 @@
   "projects": [
     {
       "name": "Emerald",
-      "type": "game-dev",
+      "category": "game-dev",
+      "tools": [],
       "aspectRatio": "4/3",
       "color": "#00CC7A",
       "link": "https://github.com/xtiandiaz/emerald"
     },
     {
       "name": "Phorm",
-      "type": "game-art",
+      "category": "game-art",
+      "tools": ["krita"],
       "aspectRatio": "1/1",
       "color": "#000000"
     },
     {
       "name": "Lingoji",
-      "type": "app-dev",
+      "category": "app-dev",
+      "tools": [],
       "aspectRatio": "1/1",
       "color": "#4d27ca",
       "enabled": false
     },
     {
       "name": "Suomingo",
-      "type": "app-dev",
+      "category": "app-dev",
+      "tools": [],
       "aspectRatio": "3/4",
       "color": "#1b1e2b",
       "enabled": false
     },
     {
       "name": "Groovy",
-      "type": "branding",
+      "category": "branding",
+      "tools": ["illustrator"],
       "aspectRatio": "1/1",
       "color": "#ff0000"
     },
     {
       "name": "Binnacle",
-      "type": "branding",
+      "category": "branding",
+      "tools": ["illustrator"],
       "images": [
         {
           "aspectRatio": "4/3",
@@ -51,7 +57,12 @@
     },
     {
       "name": "Berilio",
-      "type": "branding",
+      "category": "branding",
+      "tools": ["illustrator"],
+      "aspectRatio": "4/3",
+      "color": "#0b8e62",
+      "description": "A former enterprise devised to produce content and software assets, mostly for games, which were sold on Envato.",
+      "date": "2014 — 2017",
       "images": [
         {
           "aspectRatio": "4/3"
@@ -59,27 +70,28 @@
         {
           "aspectRatio": "2/1"
         }
-      ],
-      "aspectRatio": "4/3",
-      "color": "#0a7652"
+      ]
     },
     {
       "name": "Go-spot",
-      "type": "branding",
+      "category": "branding",
+      "tools": [],
       "images": [],
       "aspectRatio": "4/3",
       "color": "#e8f1ef"
     },
     {
       "name": "Xtian D.",
-      "type": "branding",
+      "category": "branding",
+      "tools": [],
       "images": [],
       "aspectRatio": "3/4",
       "color": "#47b4e6"
     },
     {
       "name": "Breeze",
-      "type": "branding",
+      "category": "branding",
+      "tools": [],
       "images": [],
       "aspectRatio": "4/3",
       "color": "#cbd95f",
@@ -89,71 +101,22 @@
     }
   ],
   "skills": {
-    "languages": [
-      {
-        "label": "TypeScript",
-        "priority": 1
-      },
-      {
-        "label": "C#"
-      },
-      {
-        "label": "Swift"
-      },
-      {
-        "label": "Python"
-      },
-      {
-        "label": "C++"
-      }
-    ],
-    "techs": [
-      {
-        "label": "Vue 3",
-        "priority": 1
-      },
-      {
-        "label": "HTML + SCSS",
-        "priority": 1
-      },
-      {
-        "label": "NodeJS"
-      },
-      {
-        "label": "RxJS"
-      },
-      {
-        "label": "WebGL",
-        "priority": 1
-      },
-      {
-        "label": "PixiJS",
-        "priority": 1
-      },
-      {
-        "label": "Godot"
-      },
-      {
-        "label": "Unity"
-      },
-      {
-        "label": "Figma",
-        "priority": 1
-      },
-      {
-        "label": "InkScape",
-        "priority": 1
-      },
-      {
-        "label": "Krita",
-        "priority": 1
-      },
-      {
-        "label": "Illustrator"
-      },
-      {
-        "label": "Photoshop"
-      }
+    "langs": ["typescript{1}", "c#", "swift", "python", "c++"],
+    "tools": [
+      "vue{1}",
+      "html{1}",
+      "scss{1}",
+      "node",
+      "rx",
+      "webgl{1}",
+      "pixi",
+      "godot",
+      "unity",
+      "figma{1}",
+      "inkscape{1}",
+      "krita{1}",
+      "illustrator",
+      "photoshop"
     ]
   }
 }

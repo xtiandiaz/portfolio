@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted } from 'vue';
 import { ContentRepo } from '@/services/ContentRepo';
-import { AttributeTags } from '@/components';
+import { TagElementSet, IconElement } from '@/components';
 import * as Color from '@/utils/color'
 import router from '@/router';
 
@@ -41,12 +41,14 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="wrapper" v-if="project" :key="project.id" @click="(e) => handleClick(e)">
-    <div class="background" :style="{ 'background-color': Color.setOpacity(project.palette.darkest, 0.9) }">
+    <div class="background" :style="{ 'background-color': project.palette.darkest }">
     </div>
 
     <main>
-      <article :style="{ 'background-color': project.palette.default }">
-        <AttributeTags :tags="project.tags"></AttributeTags>
+      <article :style="{ 'background-color': Color.setOpacity(project.palette.default, 0.9) }">
+        <div class="header">
+          <TagElementSet class="larger" :tags="project.tags"></TagElementSet>
+        </div>
 
         <section v-for="(image, index) of project.images" :alt="image.alt" :key="index" :style="{
           'aspect-ratio': image.aspectRatio,
@@ -54,6 +56,12 @@ onBeforeUnmount(() => {
         }">
         </section>
       </article>
+
+      <div class="footnote" v-if="project.description">
+        <IconElement :iconKey="`info`" :color="project.palette.default" />
+        <p v-html="project.description"></p>
+        <p class="date" v-if="project.date">{{ project.date }}</p>
+      </div>
     </main>
   </div>
 </template>
@@ -79,6 +87,7 @@ onBeforeUnmount(() => {
 
   .background {
     @include mixins.position(absolute, 0, 0, 0, 0);
+    opacity: 0.95;
   }
 }
 
@@ -88,8 +97,17 @@ main {
   overflow-y: auto;
   padding: 2rem;
 
-  @media (width <=functions.screen-width('s')) {
+  &>* {
+    margin: 0 auto;
+    max-width: functions.screen-width('l');
+  }
+
+  @include mixins.if-width('<=', 's') {
     @include mixins.safe-inset-padding();
+
+    .footnote {
+      font-size: 0.75em;
+    }
   }
 }
 
@@ -98,16 +116,13 @@ article {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  margin: 0 auto;
-  max-width: functions.screen-width('l');
   padding: 0.25em;
-  pointer-events: all;
-  position: relative;
 
-  .tags {
-    $margin: 0.75rem;
-
-    @include mixins.position(absolute, $margin, none, none, $margin);
+  .header {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 0.75rem;
+    padding: 0.5rem;
   }
 
   section {
@@ -117,15 +132,29 @@ article {
     display: block;
     max-width: 100%;
 
-    background-color: rgba(255 255 255 / 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.footnote {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  pointer-events: none;
+
+  * {
+    margin: 0;
+    text-align: center;
   }
 
-  @media (width <=functions.screen-width('s')) {
-    border-radius: 0.5rem;
+  .icon {
+    @include mixins.size(2rem, 2rem);
+  }
 
-    section {
-      @include first-and-last-border-radius(0.25rem);
-    }
+  .date {
+    opacity: 0.5;
   }
 }
 

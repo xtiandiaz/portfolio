@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type ProjectItem } from '@/models/Project';
-import { AttributeTags } from './';
+import { TagElementSet } from '.';
 
 const { project } = defineProps<{
   project: ProjectItem
@@ -15,7 +15,7 @@ const { project } = defineProps<{
     <a v-if="project.link" :href="project.link" target="_blank"></a>
     <RouterLink v-else :to="`/project/${project.id}`" />
 
-    <AttributeTags :tags="project.tags"></AttributeTags>
+    <TagElementSet :tags="project.tags.slice(0, 1)"></TagElementSet>
   </section>
 </template>
 
@@ -36,9 +36,8 @@ section {
   }
 
   .tags {
-    $margin: 0.625rem;
-
-    @include mixins.position(absolute, none, none, $margin, $margin);
+    @include mixins.position(absolute, none, none, 0.625rem, 0.625rem);
+    pointer-events: none;
   }
 
   // HACK to ignore Safari cuz these effects render awfully only there

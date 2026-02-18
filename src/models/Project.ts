@@ -1,10 +1,11 @@
 import type { Tag } from './Tag'
+import { Tool } from './Tool'
 import * as Color from '../utils/color'
 
 export interface ProjectItem {
   id: string
   name: string
-  type: Project.Type
+  category: Project.Category
   aspectRatio: string
   palette: Project.Palette
   tags: Tag[]
@@ -14,13 +15,15 @@ export interface ProjectItem {
 }
 
 export interface Project extends ProjectItem {
-  images?: Project.Image[]
+  tools: string[]
+  date?: string
   description?: string
   link?: string
+  images?: Project.Image[]
 }
 
 export namespace Project {
-  export enum Type {
+  export enum Category {
     APP_DEV = 'app-dev',
     BRANDING = 'branding',
     GAME_ART = 'game-art',
@@ -46,35 +49,36 @@ export namespace Project {
     name?: string
   }
 
-  export const typeName = (type: Type) => {
+  export const categoryName = (type: Category) => {
     switch (type) {
-      case Type.APP_DEV:
+      case Category.APP_DEV:
         return 'App Dev.'
-      case Type.BRANDING:
+      case Category.BRANDING:
         return 'Branding'
-      case Type.GAME_ART:
+      case Category.GAME_ART:
         return 'Game Art'
-      case Type.GAME_DEV:
+      case Category.GAME_DEV:
         return 'Game Dev.'
-      case Type.ILLUSTRATION:
+      case Category.ILLUSTRATION:
         return 'Illustration'
-      case Type.WEB_DEV:
+      case Category.WEB_DEV:
         return 'Web Dev'
     }
   }
 
-  export const tags = (name: string, type: Type, color: string): Tag[] => {
+  export const tags = (name: string, type: Category, tools: string[], colors: Palette): Tag[] => {
     return [
       {
-        label: name,
-        backgroundColor: Color.setOpacity(color, 0.8),
+        name: name,
+        type: 'identity',
+        color: Color.setOpacity(colors.darker, 0.75),
         priority: 1,
       },
       {
-        label: typeName(type),
-        backgroundColor: Color.setOpacity(color, 0.4),
-        priority: 0,
+        name: categoryName(type),
+        type: 'attribute',
       },
-    ]
+      ...tools.map((key) => Tool.tag(key)),
+    ] as Tag[]
   }
 }

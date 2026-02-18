@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ContentRepo } from '@/services/ContentRepo';
-import { ProjectItem, AttributeTag } from '@/components';
+import { ProjectItemElement, TagElementSet } from '@/components';
 
 const repo = ContentRepo.instance
 </script>
@@ -8,28 +8,24 @@ const repo = ContentRepo.instance
 <template>
   <main>
     <article>
-      <ProjectItem v-for="(project, index) of repo.items" :key="index" :project="project" />
+      <ProjectItemElement v-for="(project, index) of repo.items" :key="index" :project="project" />
     </article>
 
     <aside>
-      <div id="signature" src="/public/img/shared/signature.png" alt="Cristian Díaz – personal signature"></div>
+      <div id="signature" src="/public/img/shared/signature.png" alt="Cristian Díaz' design signature"></div>
       <h1 id="heading">
         Creative and meticulous <strong class="role">Web & Game Developer</strong> + <strong class="role">UI & Graphic
           Designer</strong>
       </h1>
       <div id="skills">
-        <div class="languages">
-          <AttributeTag v-for="(tag, index) of repo.skills.languages" :key="index" :tag="tag" />
-        </div>
-        <div>
-          <AttributeTag v-for="(tag, index) of repo.skills.techs" :key="index" :tag="tag" />
-        </div>
+        <TagElementSet :tags="repo.skills.langs" />
+        <TagElementSet :tags="repo.skills.tools" />
       </div>
       <div id="links">
         <a class="icon github" href="https://github.com/xtiandiaz" target="_blank"></a>
       </div>
       <span class="caption">
-        © 2026 — Made with <a href="https://github.com/xtiandiaz/portfolio" target="_blank">Vue + SASS</a>
+        © 2026 — Made with <a href="https://github.com/xtiandiaz/portfolio" target="_blank">Vue + SASS</a> and ♡
       </span>
     </aside>
   </main>
@@ -47,6 +43,25 @@ main {
   gap: 3rem;
   height: 100%;
   overflow: auto;
+
+  @include mixins.if-width('<=', 'l') {
+    article {
+      column-count: 3;
+      padding-top: 0;
+    }
+  }
+
+  @include mixins.if-width('<=', 'm') {
+    article {
+      column-count: 2;
+    }
+  }
+
+  @include mixins.if-width('<=', 's') {
+    article {
+      column-count: 1;
+    }
+  }
 }
 
 article {
@@ -56,22 +71,11 @@ article {
   column-gap: $gap;
   font-size: 0; // to prevent extra gap between sections
   max-width: functions.screen-width('xl');
+  padding-top: 2rem;
   width: 100%;
 
   :deep(section) {
     margin-bottom: $gap;
-  }
-
-  @media (width <=functions.screen-width('l')) {
-    column-count: 3;
-  }
-
-  @media (width <=functions.screen-width('m')) {
-    column-count: 2;
-  }
-
-  @media (width <=functions.screen-width('s')) {
-    column-count: 1;
   }
 }
 
@@ -120,17 +124,8 @@ aside {
   flex-direction: column;
   gap: 1rem;
 
-  >div {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 0.375rem;
+  .tags {
     justify-content: center;
-  }
-
-  .languages {
-    .tag {
-      border-radius: 2em;
-    }
   }
 }
 

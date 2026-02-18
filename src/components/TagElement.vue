@@ -7,9 +7,9 @@ defineProps<{
 </script>
 
 <template>
-  <span class="tag" :class="{ 'primary': (tag.priority ?? 0) > 0 }"
-    :style="{ 'background-color': tag.backgroundColor }">
-    {{ tag.label }}
+  <span class="tag" :class="[tag.type, { 'primary': (tag.priority ?? 0) > 0 }]"
+    :style="{ 'background-color': tag.color, 'border-color': tag.color }">
+    {{ tag.name }}
   </span>
 </template>
 
@@ -26,11 +26,18 @@ defineProps<{
   font-size: 0.75rem;
   padding: 0.125rem 0.375rem;
 
+  &.tool {
+    border-radius: 2rem;
+
+    &.primary {
+      color: functions.color('background');
+    }
+  }
+
   &.primary {
     @include mixins.font('semibold');
-    background-color: functions.color('foreground', 0.55);
+    background-color: functions.color('foreground', 0.6);
     border-color: functions.color('foreground', 0.25);
-    color: functions.color('background');
   }
 }
 </style>

@@ -1,5 +1,6 @@
 export interface Tag {
-  label: string
+  name: string
+  type: 'attribute' | 'identity' | 'tool'
+  color?: string
   priority?: number
-  backgroundColor?: string
 }
