@@ -1,6 +1,7 @@
 @use 'sass:color';
-@use 'sass:meta';
+@use 'sass:list';
 @use 'sass:map';
+@use 'sass:meta';
 @use 'sass:string';
 @use './svars';
 @use './functions';
@@ -20,7 +21,7 @@
   }
 }
 
-@mixin position($type, $top: none, $right: none, $bottom: none, $left: none) {
+@mixin position($type, $top: null, $right: null, $bottom: null, $left: null) {
   & {
     position: $type;
     @if $top {
@@ -38,41 +39,25 @@
   }
 }
 
-@mixin size($width, $height: none) {
+@mixin size($width, $height: null) {
   & {
     width: $width;
     height: if($height, $height, $width);
   }
 }
-@mixin min-size($min-width, $min-height: none) {
+@mixin min-size($min-width, $min-height: null) {
   & {
     min-width: $min-width;
     min-height: if($min-height, $min-height, $min-width);
   }
 }
 
-@mixin if-property($property, $operator, $value) {
-  & {
-    @if $operator == '<=' {
-      @media ($property <= $value) {
-        @content;
-      }
-    } @else if $operator == '>=' {
-      @media ($property >= $value) {
-        @content;
-      }
-    } @else if $operator == '==' {
-      @media ($property: $value) {
-        @content;
-      }
-    }
+@mixin with-width($width-keys...) {
+  $widths: ();
+  @each $key in $width-keys {
+    $widths: list.append($widths, functions.screen-width($key));
   }
-}
-@mixin if-width($operator, $key) {
-  $width: functions.screen-width($key);
-  @include if-property(width, $operator, $width) {
-    @content;
-  }
+  @content ($widths...);
 }
 
 @mixin safe-inset-padding($top: 0, $right: 0, $bottom: 0, $left: 0) {

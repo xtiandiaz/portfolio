@@ -82,6 +82,17 @@ onBeforeUnmount(() => {
   }
 }
 
+@mixin larger-tags {
+  :deep(.tags) {
+    gap: 0.5rem;
+
+    .tag {
+      font-size: 0.85rem;
+      padding: 0.125rem 0.5rem;
+    }
+  }
+}
+
 .wrapper {
   @include mixins.position(absolute, 0, 0, 0, 0);
 
@@ -102,12 +113,19 @@ main {
     max-width: functions.screen-width('l');
   }
 
-  @include mixins.if-width('<=', 's') {
-    @include mixins.safe-inset-padding();
-
-    .footnote {
-      font-size: 0.75em;
+  @include mixins.with-width('s') using ($s) {
+    @media (width > $s) {
+      @include larger-tags;
     }
+
+    @media (width <=$s) {
+      @include mixins.safe-inset-padding();
+
+      .footnote {
+        font-size: 0.75em;
+      }
+    }
+
   }
 }
 
@@ -150,7 +168,7 @@ article {
   }
 
   .icon {
-    @include mixins.size(2rem, 2rem);
+    @include mixins.size(2rem);
   }
 
   .date {

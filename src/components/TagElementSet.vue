@@ -19,14 +19,5 @@ defineProps<{ tags: Tag[] }>()
   display: flex;
   flex-flow: row wrap;
   gap: 0.375rem;
-
-  &.larger {
-    gap: 0.5rem;
-
-    .tag {
-      font-size: 0.85rem;
-      padding: 0.125rem 0.5rem;
-    }
-  }
 }
 </style>

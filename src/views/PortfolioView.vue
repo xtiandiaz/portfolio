@@ -25,7 +25,7 @@ const repo = ContentRepo.instance
         <a class="icon github" href="https://github.com/xtiandiaz" target="_blank"></a>
       </div>
       <span class="caption">
-        © 2026 — Made with <a href="https://github.com/xtiandiaz/portfolio" target="_blank">Vue + SASS</a> and ♡
+        © 2026 — Made with <a href="https://github.com/xtiandiaz/portfolio" target="_blank">Vue + Sass</a> and ♡
       </span>
     </aside>
   </main>
@@ -44,22 +44,24 @@ main {
   height: 100%;
   overflow: auto;
 
-  @include mixins.if-width('<=', 'l') {
-    article {
-      column-count: 3;
-      padding-top: 0;
+  @include mixins.with-width('l', 'm', 's') using ($l, $m, $s) {
+    @media (width <=$l) {
+      article {
+        column-count: 3;
+        padding-top: 0;
+      }
     }
-  }
 
-  @include mixins.if-width('<=', 'm') {
-    article {
-      column-count: 2;
+    @media (width <=$m) {
+      article {
+        column-count: 2;
+      }
     }
-  }
 
-  @include mixins.if-width('<=', 's') {
-    article {
-      column-count: 1;
+    @media (width <=$s) {
+      article {
+        column-count: 1;
+      }
     }
   }
 }
@@ -93,7 +95,7 @@ aside {
   }
 
   .icon {
-    @include mixins.size(48px, 48px);
+    @include mixins.size(3rem);
     display: inline-block;
 
     &.github {
