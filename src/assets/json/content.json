@@ -42,18 +42,11 @@
       "name": "Binnacle",
       "category": "branding",
       "tools": ["illustrator"],
-      "images": [
-        {
-          "aspectRatio": "4/3",
-          "alt": "Logotype"
-        },
-        {
-          "aspectRatio": "4/3",
-          "alt": "Document cover featuring logo-symbol"
-        }
-      ],
       "aspectRatio": "1/1",
-      "color": "#21b7eb"
+      "color": "#21b7eb",
+      "pieces": ["4/3", "4/3"],
+      "description": "A commision for a tax and financial management consulting startup.",
+      "date": "2016"
     },
     {
       "name": "Berilio",
@@ -61,16 +54,9 @@
       "tools": ["illustrator"],
       "aspectRatio": "4/3",
       "color": "#0b8e62",
+      "pieces": ["4/3", "2/1"],
       "description": "A former enterprise devised to produce content and software assets, mostly for games, which were sold on Envato.",
-      "date": "2014 — 2017",
-      "images": [
-        {
-          "aspectRatio": "4/3"
-        },
-        {
-          "aspectRatio": "2/1"
-        }
-      ]
+      "date": "2014 — 2017"
     },
     {
       "name": "Go-spot",

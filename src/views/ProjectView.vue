@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted } from 'vue';
 import { ContentRepo } from '@/services/ContentRepo';
-import { TagElementSet, IconElement } from '@/components';
+import { TagElementSet, IconButton, IconElement } from '@/components';
 import * as Color from '@/utils/color'
 import router from '@/router';
 
@@ -47,12 +47,13 @@ onBeforeUnmount(() => {
     <main>
       <article :style="{ 'background-color': Color.setOpacity(project.palette.default, 0.9) }">
         <div class="header">
+          <IconButton @click="() => close()" :icon-key="`xmark`" :color="project.palette.darker" />
           <TagElementSet class="larger" :tags="project.tags"></TagElementSet>
         </div>
 
-        <section v-for="(image, index) of project.images" :alt="image.alt" :key="index" :style="{
-          'aspect-ratio': image.aspectRatio,
-          'background-image': `url(/img/${project.id}_showcase${index + 1}.png)`
+        <section v-for="(aspect, index) of project.pieces" :key="index" :style="{
+          'aspect-ratio': aspect,
+          'background-image': `url(/img/${project.id}_piece${index + 1}.png)`
         }">
         </section>
       </article>
@@ -138,9 +139,19 @@ article {
 
   .header {
     display: flex;
-    flex-flow: column wrap;
-    gap: 0.75rem;
-    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 2rem;
+    padding: 0.5rem 3rem 0.5rem 0.5rem;
+    position: relative;
+
+    button {
+      @include mixins.position(absolute, 0, 0);
+
+      :deep(.icon) {
+        opacity: 0.75;
+      }
+    }
   }
 
   section {
@@ -159,7 +170,8 @@ article {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 2rem 1.5rem 1rem 1.5rem;
+  max-width: functions.screen-width('m');
+  padding: 1rem 1.5rem;
   pointer-events: none;
 
   * {
@@ -168,7 +180,7 @@ article {
   }
 
   .icon {
-    @include mixins.size(2rem);
+    @include mixins.size(1.75rem);
   }
 
   .date {

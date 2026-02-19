@@ -11,15 +11,15 @@ export interface ProjectItem {
   tags: Tag[]
   preview?: string
   link?: string
-  options?: Partial<Project.Options>
+  // options?: Partial<Project.Options>
 }
 
 export interface Project extends ProjectItem {
   tools: string[]
-  date?: string
-  description?: string
+  pieces?: string[]
   link?: string
-  images?: Project.Image[]
+  description?: string
+  date?: string
 }
 
 export namespace Project {
@@ -32,21 +32,15 @@ export namespace Project {
     WEB_DEV = 'web-dev',
   }
 
-  export interface Options {
-    invertsColors: boolean
-  }
+  // export interface Options {
+  //   invertsColors: boolean
+  // }
 
   export interface Palette {
     default: string
     darker: string
     darkest: string
     lighter: string
-  }
-
-  export interface Image {
-    aspectRatio: string
-    alt?: string
-    name?: string
   }
 
   export const categoryName = (type: Category) => {

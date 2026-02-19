@@ -22,7 +22,7 @@ onMounted(async () => {
 @use '@/assets/styles/mixins';
 
 .icon {
-  @include mixins.min-size(1.5em);
+  @include mixins.min-size(1.5rem);
   color: functions.color('foreground');
   display: inline-block;
 }
