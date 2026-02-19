@@ -12,7 +12,7 @@
       "name": "Phorm",
       "category": "game-art",
       "tools": ["krita"],
-      "aspectRatio": "1/1",
+      "aspectRatio": "3/4",
       "color": "#000000"
     },
     {
@@ -32,11 +32,14 @@
       "enabled": false
     },
     {
-      "name": "Groovy",
+      "name": "Berilio",
       "category": "branding",
       "tools": ["illustrator"],
-      "aspectRatio": "1/1",
-      "color": "#ff0000"
+      "aspectRatio": "4/3",
+      "color": "#0b8e62",
+      "pieces": ["4/3", "2/1"],
+      "description": "A former enterprise devised to produce content and software assets, mostly for games, which were sold on Envato.",
+      "date": "2014 — 2017"
     },
     {
       "name": "Binnacle",
@@ -49,14 +52,19 @@
       "date": "2016"
     },
     {
-      "name": "Berilio",
+      "name": "Maito",
+      "category": "illustration",
+      "tools": [],
+      "images": [],
+      "aspectRatio": "1/1",
+      "color": "#47b4e6"
+    },
+    {
+      "name": "Groovy",
       "category": "branding",
       "tools": ["illustrator"],
-      "aspectRatio": "4/3",
-      "color": "#0b8e62",
-      "pieces": ["4/3", "2/1"],
-      "description": "A former enterprise devised to produce content and software assets, mostly for games, which were sold on Envato.",
-      "date": "2014 — 2017"
+      "aspectRatio": "1/1",
+      "color": "#ff0000"
     },
     {
       "name": "Go-spot",
@@ -64,7 +72,8 @@
       "tools": [],
       "images": [],
       "aspectRatio": "4/3",
-      "color": "#e8f1ef"
+      "color": "#e8f1ef",
+      "enabled": false
     },
     {
       "name": "Xtian D.",
@@ -73,17 +82,6 @@
       "images": [],
       "aspectRatio": "3/4",
       "color": "#47b4e6"
-    },
-    {
-      "name": "Breeze",
-      "category": "branding",
-      "tools": [],
-      "images": [],
-      "aspectRatio": "4/3",
-      "color": "#cbd95f",
-      "options": {
-        "invertsColors": true
-      }
     }
   ],
   "skills": {

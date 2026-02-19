@@ -71,6 +71,7 @@ export namespace Project {
       {
         name: categoryName(type),
         type: 'attribute',
+        color: Color.setOpacity(colors.darker, 0.25),
       },
       ...tools.map((key) => Tool.tag(key)),
     ] as Tag[]

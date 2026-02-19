@@ -8,6 +8,10 @@ This is the source code of my personal website ([live here](https://xtiandiaz.gi
 - The styling is enhanced with [Sass](https://sass-lang.com/), which IMO is still an extraordinary way to compartmentalize and reuse styles (even beyond the marvels of modern CSS).
 - [InkScape](https://inkscape.org), [Krita](http://krita.org) and Figma, to produce (or remaster) the portfolio's visual content and the website's assets.
 
-## NO License
+## License
 
 Feel free to clone, fork and explore this repo. BUT, please do bear in mind that **the lack of an explicit license here is deliberate**, and that according to the [terms & conditions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository#choosing-the-right-license), _"without a license, the default copyright laws apply, meaning that [I] retain all rights to [my] source code and **no one may reproduce, distribute, or create derivative works from [my] work.**"_
+
+### External assets
+
+- Inter Font: https://github.com/rsms/inter

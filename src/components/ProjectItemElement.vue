@@ -15,7 +15,7 @@ const { project } = defineProps<{
     <a v-if="project.link" :href="project.link" target="_blank"></a>
     <RouterLink v-else :to="`/project/${project.id}`" />
 
-    <TagElementSet :tags="project.tags.slice(0, 1)"></TagElementSet>
+    <TagElementSet :tags="project.tags.slice(0, 2)"></TagElementSet>
   </section>
 </template>
 
