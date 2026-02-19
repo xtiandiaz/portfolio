@@ -1,6 +1,6 @@
 # Personal portfolio website
 
-This is the source code of my personal website ([live here](https://xtiandiaz.github.io), and deployed from a [separate repo.](https://github.com/xtiandiaz/xtiandiaz.github.io)), meant as both a **portfolio** and as a **piece of portfolio** itself; let's call it portfolio-inception!
+This is the source code of my personal website ([live here](https://xtiandiaz.github.io)), meant as both a **portfolio** and as a **piece of portfolio** itself; let's call it portfolio-inception!
 
 ## Tools
 
